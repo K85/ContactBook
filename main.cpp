@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
   // High-DPI Support.
   QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
   QApplication a(argc, argv);
-  QFile qssFile(":/qss/light.qss");
+  QFile qssFile(":/dev/qss/light.qss");
 
   if (!qssFile.open(QFile::ReadOnly)) {
     qDebug("Fail to Open QSS File.");

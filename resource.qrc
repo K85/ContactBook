@@ -1,7 +1,48 @@
 <RCC>
-    <qresource prefix="/qss">
-        <file>dark.qss</file>
-        <file>light.qss</file>
-        <file>orange.qss</file>
+    <qresource prefix="/dev">
+        <file>image/add_bottom.png</file>
+        <file>image/add_left.png</file>
+        <file>image/add_right.png</file>
+        <file>image/add_top.png</file>
+        <file>image/btn_close.png</file>
+        <file>image/btn_ok.png</file>
+        <file>image/checkbox_checked.png</file>
+        <file>image/checkbox_unchecked.png</file>
+        <file>image/Font Awesome Cheatsheet.png</file>
+        <file>image/fontawesome-webfont.ttf</file>
+        <file>image/msg_error.png</file>
+        <file>image/msg_info.png</file>
+        <file>image/msg_question.png</file>
+        <file>image/qt_zh_CN.qm</file>
+        <file>image/radio_normal.png</file>
+        <file>image/radio_selected.png</file>
+        <file>image/widgets.qm</file>
+        <file>qss/bf.css</file>
+        <file>qss/black.css</file>
+        <file>qss/black.qss</file>
+        <file>qss/blue.css</file>
+        <file>qss/blue.qss</file>
+        <file>qss/brown.qss</file>
+        <file>qss/dark.qss</file>
+        <file>qss/darkblack.css</file>
+        <file>qss/darkblue.css</file>
+        <file>qss/darkgray.css</file>
+        <file>qss/darkgray.qss</file>
+        <file>qss/dev.qss</file>
+        <file>qss/flatblack.css</file>
+        <file>qss/flatwhite.css</file>
+        <file>qss/gray.css</file>
+        <file>qss/gray.qss</file>
+        <file>qss/light.qss</file>
+        <file>qss/lightblack.css</file>
+        <file>qss/lightblue.css</file>
+        <file>qss/lightgray.css</file>
+        <file>qss/lightgray.qss</file>
+        <file>qss/orange.qss</file>
+        <file>qss/psblack.css</file>
+        <file>qss/silvery.css</file>
+        <file>qss/silvery.qss</file>
+        <file>qss/test.css</file>
+        <file>icon.ico</file>
     </qresource>
 </RCC>
