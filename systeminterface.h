@@ -1,18 +1,18 @@
 #pragma once
 #include "DataBean.h"
-#include <vector>
+#include <list>
 #include <string>
 using namespace std;
 class SystemInterface {
 
 private:
-    vector<DataBean> dataBeans;
+    list<DataBean> dataBeans;
 
 // Singleton
 public:
     static SystemInterface & getInstance();
 public:
-    vector<DataBean> & getDataBeans();
+    list<DataBean> & getDataBeans();
 
 public:
     void addDataBean(DataBean dataBean);
@@ -24,7 +24,7 @@ public:
     void modifyDataBean(DataBean dataBean);
 
 public:
-    vector<DataBean>::iterator searchDataBean(DataBean dataBean);
+    list<DataBean>::iterator searchDataBean(DataBean dataBean);
 
 public:
     bool existDataBean(DataBean dataBean);
@@ -43,7 +43,7 @@ public:
 
 public:
     template<typename _Predicate>
-    vector<DataBean *> searchDataBeans(_Predicate pridicator);
+    list<DataBean *> searchDataBeans(_Predicate pridicator);
 
 
 };

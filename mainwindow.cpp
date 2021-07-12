@@ -65,7 +65,7 @@ void MainWindow::on_pushButton_AddContact_clicked()
     SystemInterface::getInstance().addDataBean(dataBean);
     SystemInterface::getInstance().listDataBeans();
     // Resort Contacts.
-    sort(SystemInterface::getInstance().getDataBeans().begin(),  SystemInterface::getInstance().getDataBeans().end());
+    SystemInterface::getInstance().getDataBeans().sort();
 
     // Redraw and Reselect.
     this->on_pushButton_ListContact_clicked();
@@ -78,7 +78,7 @@ void MainWindow::on_pushButton_ListContact_clicked()
     ui->listWidget_databeans->clear();
 
     // Get All Contacts from SystemInterface.
-    vector<DataBean> dataBeans = SystemInterface::getInstance().getDataBeans();
+    list<DataBean> dataBeans = SystemInterface::getInstance().getDataBeans();
     for (DataBean dataBean : dataBeans) {
         ui->listWidget_databeans->addItem(QString(dataBean.name.c_str()));
     }
@@ -150,7 +150,6 @@ void MainWindow::on_pushButton_ModifyContact_clicked()
 
 void MainWindow::showContactInfo(string contactName) {
     auto iter = SystemInterface::getInstance().searchDataBean(contactName);
-
     qDebug("ContactList item has been changed to: \n%s", iter->getFormatedInfo().c_str());
 
     // Redraw Contact Info.
@@ -209,7 +208,7 @@ void MainWindow::on_pushButton_SearchContact_clicked()
     }
 
     /* Do Search. */
-    vector<DataBean *> searchedDataBeans;
+    list<DataBean *> searchedDataBeans;
 
     // Filter: By Name.
     if (!item.toStdString().compare("By Name")) {

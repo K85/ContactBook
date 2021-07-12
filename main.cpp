@@ -11,6 +11,7 @@ int main(int argc, char *argv[])
 {
     // Call SystemInstance.
     SystemInterface::getInstance().loadDataBeansFromDisk();
+    SystemInterface::getInstance().getDataBeans().sort();
 
     /* Run Qt Application. */
 

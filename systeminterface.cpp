@@ -1,4 +1,4 @@
-#include <vector>
+#include <list>
 #include <iterator>
 #include <algorithm>
 #include <numeric>
@@ -15,7 +15,7 @@ SystemInterface & SystemInterface::getInstance() {
         return instance;
     }
 
-vector<DataBean> & SystemInterface::getDataBeans() {
+list<DataBean> & SystemInterface::getDataBeans() {
         return this->dataBeans;
     }
 
@@ -27,7 +27,7 @@ void SystemInterface::addDataBean(DataBean dataBean) {
     }
 
 void SystemInterface::deleteDataBean(DataBean dataBean) {
-        for (vector<DataBean>::iterator iter = this->dataBeans.begin(); iter != this->dataBeans.end(); iter++) {
+        for (list<DataBean>::iterator iter = this->dataBeans.begin(); iter != this->dataBeans.end(); iter++) {
             if (!iter->name.compare(dataBean.name)) {
                 this->dataBeans.erase(iter);
                 // Save To Disk.
@@ -40,7 +40,7 @@ void SystemInterface::deleteDataBean(DataBean dataBean) {
 
 void SystemInterface::modifyDataBean(DataBean dataBean) {
         // Find DataBean By ID.
-        vector<DataBean>::iterator iter = searchDataBean(dataBean);
+        list<DataBean>::iterator iter = searchDataBean(dataBean);
         qDebug("联系人的旧数据: %s\n", iter->getFormatedInfo().c_str());
 
         // Modify Values.
@@ -55,8 +55,8 @@ void SystemInterface::modifyDataBean(DataBean dataBean) {
     }
 
 
-    vector<DataBean>::iterator SystemInterface::searchDataBean(DataBean dataBean) {
-        vector<DataBean>::iterator iter = find(dataBeans.begin(), dataBeans.end(), dataBean);
+    list<DataBean>::iterator SystemInterface::searchDataBean(DataBean dataBean) {
+        list<DataBean>::iterator iter = find(dataBeans.begin(), dataBeans.end(), dataBean);
         return iter;
     }
 
@@ -119,17 +119,17 @@ void SystemInterface::modifyDataBean(DataBean dataBean) {
      }
 
      template<typename _Predicate>
-     vector<DataBean *> SystemInterface::searchDataBeans(_Predicate predicator) {
+     list<DataBean *> SystemInterface::searchDataBeans(_Predicate predicator) {
          // Do Search.
-         vector<DataBean>::iterator curIter = SystemInterface::getInstance().getDataBeans().begin();
-         vector<DataBean>::iterator endIter = SystemInterface::getInstance().getDataBeans().end();
-         vector<DataBean *> searchedDataBeans;
+         list<DataBean>::iterator curIter = SystemInterface::getInstance().getDataBeans().begin();
+         list<DataBean>::iterator endIter = SystemInterface::getInstance().getDataBeans().end();
+         list<DataBean *> searchedDataBeans;
 
          while (true) {
              curIter = find_if(curIter,
                      endIter, predicator);
             if (curIter != endIter) {
-                searchedDataBeans.push_back(curIter.base());
+                searchedDataBeans.push_back(&(*curIter));
             }
 
             if (curIter == endIter || ++curIter == endIter)  break;
