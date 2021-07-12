@@ -93,7 +93,7 @@ void MainWindow::on_pushButton_DeleteContact_clicked()
 {
 
     // Check Empty.
-    if (!ui->listWidget_databeans->currentItem()->isSelected()) {
+    if (ui->listWidget_databeans->currentItem() == NULL) {
         QMessageBox::critical(NULL, NULL, "Select A Contact First.");
         return;
     }
@@ -133,6 +133,12 @@ void MainWindow::on_listWidget_databeans_currentTextChanged(const QString &curre
 
 void MainWindow::on_pushButton_ModifyContact_clicked()
 {
+
+    // Check Empty.
+    if (ui->listWidget_databeans->currentItem() == NULL) {
+        return;
+    }
+
 
     // Get Selected ListItem.
     string name = ui->listWidget_databeans->currentItem()->text().toStdString();

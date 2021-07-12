@@ -48,6 +48,7 @@ void SystemInterface::modifyDataBean(DataBean dataBean) {
         iter->unit = dataBean.unit;
         iter->telephone = dataBean.telephone;
         iter->mobilePhone = dataBean.mobilePhone;
+        iter->note = dataBean.note;
         qDebug("修改完成, 新数据: %s\n", iter->getFormatedInfo().c_str());
 
         // Save To Disk.
