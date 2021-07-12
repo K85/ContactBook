@@ -1,4 +1,5 @@
 #pragma once
+
 #include <string>
 #define BUFFER_SIZE 1024
 using namespace std;
@@ -13,6 +14,9 @@ public:
 
 public:
     bool operator== (const DataBean& dataBean);
+
+public:
+    DataBean& operator=(const DataBean& dataBean);
 
 public:
     bool operator< (const DataBean& dataBean);

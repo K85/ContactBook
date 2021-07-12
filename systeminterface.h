@@ -4,47 +4,60 @@
 #include <string>
 using namespace std;
 class SystemInterface {
-
 private:
-    list<DataBean> dataBeans;
 
-// Singleton
-public:
-    static SystemInterface & getInstance();
-public:
-    list<DataBean> & getDataBeans();
+  const string DATABEANS_FILE_NAME = "DataBeans.dat";
+  list<DataBean>dataBeans;
+
+  // Singleton
 
 public:
-    void addDataBean(DataBean dataBean);
+
+  static SystemInterface& getInstance();
 
 public:
-    void deleteDataBean(DataBean dataBean);
+
+  list<DataBean>& getDataBeans();
 
 public:
-    void modifyDataBean(DataBean dataBean);
+
+  void addDataBean(DataBean& dataBean);
 
 public:
-    list<DataBean>::iterator searchDataBean(DataBean dataBean);
+
+  void deleteDataBean(DataBean& dataBean);
 
 public:
-    bool existDataBean(DataBean dataBean);
+
+  void modifyDataBean(DataBean& dataBean);
 
 public:
-    void saveDataBeansToDisk();
+
+  list<DataBean>::iterator searchDataBean(DataBean& dataBean);
 
 public:
-    void loadDataBeansFromDisk();
+
+  bool existDataBean(DataBean& dataBean);
 
 public:
-    void loadDataBeansFromDisk(bool clearDetaBeansInMemory, string fileName);
+
+  bool saveDataBeansToDisk();
 
 public:
-    void listDataBeans();
+
+  bool loadDataBeansFromDisk();
 
 public:
-    template<typename _Predicate>
-    list<DataBean *> searchDataBeans(_Predicate pridicator);
 
+  bool loadDataBeansFromDisk(bool   clearDetaBeansInMemory,
+                             string fileName);
 
+public:
+
+  template<typename _Predicate>
+  list<list<DataBean>::iterator>searchDataBeans(_Predicate pridicator);
+
+public:
+
+  static string filter(string raw);
 };
-
