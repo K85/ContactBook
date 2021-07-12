@@ -1,28 +1,28 @@
 #include "SystemInterface.h"
-#include "DataBean.h"
-#include <list>
-#include <iterator>
+
 #include <algorithm>
+#include <iterator>
+#include <list>
+
+#include "DataBean.h"
 using namespace std;
 
 // Singleton
-SystemInterface& SystemInterface::getInstance() {
+SystemInterface &SystemInterface::getInstance() {
   static SystemInterface instance;
   return instance;
 }
 
-list<DataBean>& SystemInterface::getDataBeans() {
-  return this->dataBeans;
-}
+list<DataBean> &SystemInterface::getDataBeans() { return this->dataBeans; }
 
-void SystemInterface::addDataBean(DataBean& dataBean) {
+void SystemInterface::addDataBean(DataBean &dataBean) {
   this->dataBeans.push_back(dataBean);
 
   // Save To Disk.
   this->saveDataBeansToDisk();
 }
 
-void SystemInterface::deleteDataBean(DataBean& dataBean) {
+void SystemInterface::deleteDataBean(DataBean &dataBean) {
   for (list<DataBean>::iterator iter = this->dataBeans.begin();
        iter != this->dataBeans.end(); iter++) {
     // Use Operator ==
@@ -36,7 +36,7 @@ void SystemInterface::deleteDataBean(DataBean& dataBean) {
   this->saveDataBeansToDisk();
 }
 
-void SystemInterface::modifyDataBean(DataBean& dataBean) {
+void SystemInterface::modifyDataBean(DataBean &dataBean) {
   // Find DataBean By PrimaryKey.
   list<DataBean>::iterator iter = searchDataBean(dataBean);
 
@@ -47,14 +47,13 @@ void SystemInterface::modifyDataBean(DataBean& dataBean) {
   this->saveDataBeansToDisk();
 }
 
-list<DataBean>::iterator SystemInterface::searchDataBean(DataBean& dataBean) {
-  list<DataBean>::iterator iter = find(dataBeans.begin(),
-                                       dataBeans.end(),
-                                       dataBean);
+list<DataBean>::iterator SystemInterface::searchDataBean(DataBean &dataBean) {
+  list<DataBean>::iterator iter =
+      find(dataBeans.begin(), dataBeans.end(), dataBean);
   return iter;
 }
 
-bool SystemInterface::existDataBean(DataBean& dataBean) {
+bool SystemInterface::existDataBean(DataBean &dataBean) {
   return SystemInterface::getInstance().searchDataBean(dataBean) !=
          SystemInterface::getInstance().getDataBeans().end();
 }
@@ -75,7 +74,7 @@ bool SystemInterface::saveDataBeansToDisk() {
   return true;
 }
 
-bool SystemInterface::loadDataBeansFromDisk(bool   clearDetaBeansInMemory,
+bool SystemInterface::loadDataBeansFromDisk(bool clearDetaBeansInMemory,
                                             string fileName) {
   // Clear DataBeans in Memory.
   if (clearDetaBeansInMemory) this->dataBeans.clear();
@@ -95,23 +94,22 @@ bool SystemInterface::loadDataBeansFromDisk(bool   clearDetaBeansInMemory,
 }
 
 bool SystemInterface::loadDataBeansFromDisk() {
-  return SystemInterface::loadDataBeansFromDisk(true,
-                                                SystemInterface::DATABEANS_FILE_NAME.c_str());
+  return SystemInterface::loadDataBeansFromDisk(
+      true, SystemInterface::DATABEANS_FILE_NAME.c_str());
 }
 
-template<typename _Predicate>
-list<list<DataBean>::iterator>SystemInterface::searchDataBeans(
-  _Predicate predicator) {
+template <typename _Predicate>
+list<list<DataBean>::iterator> SystemInterface::searchDataBeans(
+    _Predicate predicate) {
   // Do Search.
   list<DataBean>::iterator curIter =
-    SystemInterface::getInstance().getDataBeans().begin();
+      SystemInterface::getInstance().getDataBeans().begin();
   list<DataBean>::iterator endIter =
-    SystemInterface::getInstance().getDataBeans().end();
+      SystemInterface::getInstance().getDataBeans().end();
   list<list<DataBean>::iterator> searchedDataBeans;
 
   while (true) {
-    curIter = find_if(curIter,
-                      endIter, predicator);
+    curIter = find_if(curIter, endIter, predicate);
 
     if (curIter != endIter) {
       searchedDataBeans.push_back(curIter);
@@ -124,7 +122,7 @@ list<list<DataBean>::iterator>SystemInterface::searchDataBeans(
 }
 
 string SystemInterface::filter(string raw) {
-  for (char& ch : raw) {
+  for (char &ch : raw) {
     if ((ch == ' ') || (ch == '\n') || (ch == '\t')) ch = '_';
   }
   return raw;

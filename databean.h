@@ -4,36 +4,36 @@
 #define BUFFER_SIZE 1024
 using namespace std;
 class DataBean {
-public:
-
+ public:
   string name;
   string unit;
   string telephone;
   string mobilePhone;
   string note;
 
-  bool      operator==(const DataBean& dataBean);
+  bool operator==(const DataBean& dataBean);
 
   DataBean& operator=(const DataBean& dataBean);
 
-  bool      operator<(const DataBean& dataBean);
+  bool operator<(const DataBean& dataBean);
 
   DataBean(string name) : name(name) {}
 
-  DataBean(string name,
-           string unit,
-           string telephone,
-           string mobilePhone,
-           string note) : name(name), unit(unit),
-    telephone(telephone), mobilePhone(mobilePhone), note(note) {}
+  DataBean(string name, string unit, string telephone, string mobilePhone,
+           string note)
+      : name(name),
+        unit(unit),
+        telephone(telephone),
+        mobilePhone(mobilePhone),
+        note(note) {}
 
   DataBean() {}
 
-  void        printDataBean();
+  void printDataBean();
 
-  string      getFormatedInfo();
+  string getFormatedInfo();
 
-  void        outputToFile(FILE *file);
+  void outputToFile(FILE* file);
 
-  static void inputFromFile(FILE *file);
+  static void inputFromFile(FILE* file);
 };

@@ -7,18 +7,19 @@
 using namespace std;
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui {
+class MainWindow;
+}
 QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow {
   Q_OBJECT
 
-public:
-
-  MainWindow(QWidget *parent = nullptr);
+ public:
+  MainWindow(QWidget* parent = nullptr);
   ~MainWindow();
 
-private slots:
+ private slots:
 
   void on_pushButton_AddContact_clicked();
 
@@ -38,8 +39,7 @@ private slots:
 
   void on_lineEdit_operateContact_Name_textChanged(const QString& arg1);
 
-private:
-
-  Ui::MainWindow *ui;
+ private:
+  Ui::MainWindow* ui;
 };
-#endif // MAINWINDOW_H
+#endif  // MAINWINDOW_H

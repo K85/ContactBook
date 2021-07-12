@@ -1,14 +1,14 @@
-#include "SystemInterface.h"
-#include "LevenshteinAlgorithm.h"
-#include "mainwindow.h"
 #include <stdio.h>
+
 #include <QApplication>
-#include <QFile>
 #include <QDebug>
+#include <QFile>
 
+#include "LevenshteinAlgorithm.h"
+#include "SystemInterface.h"
+#include "mainwindow.h"
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
   // Initialize SystemInstance.
   SystemInterface::getInstance().loadDataBeansFromDisk();
   SystemInterface::getInstance().getDataBeans().sort();
