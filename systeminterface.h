@@ -9,55 +9,32 @@ private:
   const string DATABEANS_FILE_NAME = "DataBeans.dat";
   list<DataBean>dataBeans;
 
+public:
+
   // Singleton
+  static SystemInterface & getInstance();
 
-public:
+  list<DataBean>         & getDataBeans();
 
-  static SystemInterface& getInstance();
+  void                     addDataBean(DataBean& dataBean);
 
-public:
+  void                     deleteDataBean(DataBean& dataBean);
 
-  list<DataBean>& getDataBeans();
-
-public:
-
-  void addDataBean(DataBean& dataBean);
-
-public:
-
-  void deleteDataBean(DataBean& dataBean);
-
-public:
-
-  void modifyDataBean(DataBean& dataBean);
-
-public:
+  void                     modifyDataBean(DataBean& dataBean);
 
   list<DataBean>::iterator searchDataBean(DataBean& dataBean);
 
-public:
+  bool                     existDataBean(DataBean& dataBean);
 
-  bool existDataBean(DataBean& dataBean);
+  bool                     saveDataBeansToDisk();
 
-public:
+  bool                     loadDataBeansFromDisk();
 
-  bool saveDataBeansToDisk();
-
-public:
-
-  bool loadDataBeansFromDisk();
-
-public:
-
-  bool loadDataBeansFromDisk(bool   clearDetaBeansInMemory,
-                             string fileName);
-
-public:
+  bool                     loadDataBeansFromDisk(bool   clearDetaBeansInMemory,
+                                                 string fileName);
 
   template<typename _Predicate>
   list<list<DataBean>::iterator>searchDataBeans(_Predicate pridicator);
 
-public:
-
-  static string filter(string raw);
+  static string                 filter(string raw);
 };

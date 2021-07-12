@@ -32,7 +32,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_AddContact_clicked()
 {
-  // Name Already Exist ?
+  /* Name Already Exist ? */
   string name = SystemInterface::filter(
     ui->lineEdit_operateContact_Name->text().toStdString());
 
@@ -66,13 +66,6 @@ void MainWindow::on_pushButton_AddContact_clicked()
   if (mobilePhone.empty()) mobilePhone.assign("EmptyMobilePhone");
 
   if (note.empty()) note.assign("EmptyNote");
-  qDebug(
-    "Construct DataBean: name = %s, unit = %s, telephone = %s, mobilePhone = %s, note = %s",
-    name.c_str(),
-    unit.c_str(),
-    telephone.c_str(),
-    mobilePhone.c_str(),
-    note.c_str());
   dataBean = DataBean(name, unit, telephone, mobilePhone, note);
 
   /* Add DataBean to SystemInterface. */
@@ -81,7 +74,7 @@ void MainWindow::on_pushButton_AddContact_clicked()
   // Resort Contacts.
   SystemInterface::getInstance().getDataBeans().sort();
 
-  // Redraw and Reselect.
+  /* Redraw and Reselect. */
   this->on_pushButton_ListContact_clicked();
   ui->listWidget_databeans->setCurrentItem(ui->listWidget_databeans->findItems(
                                              QString(name.c_str()),
@@ -101,6 +94,7 @@ void MainWindow::on_pushButton_ListContact_clicked()
     ui->listWidget_databeans->addItem(QString(dataBean.name.c_str()));
   }
 
+  /* Redraw. */
   ui->label_ContactBook->setText("Contact Book: ");
   QPalette pe;
 
@@ -146,15 +140,13 @@ void MainWindow::on_pushButton_DeleteContact_clicked()
 void MainWindow::on_listWidget_databeans_currentTextChanged(
   const QString& currentText)
 {
+  // Check Empty.
   if (currentText.isEmpty() || currentText.isNull()) {
     return;
   }
 
-  // Get New Value.
-  string newSelectedContactName = currentText.toStdString();
-
   // Show ContactName.
-  showContactInfo(newSelectedContactName);
+  showContactInfo(currentText.toStdString());
 }
 
 void MainWindow::on_pushButton_ModifyContact_clicked()
@@ -179,10 +171,11 @@ void MainWindow::on_pushButton_ModifyContact_clicked()
   string mobilePhone =
     ui->lineEdit_operateContact_MobilePhone->text().toStdString();
   string note = ui->lineEdit_operateContact_Note->text().toStdString();
-  dataBean = DataBean(newName, unit, telephone, mobilePhone, note);
-  *iter = dataBean;
 
-  // Redraw and Reselect.
+  dataBean = DataBean(newName, unit, telephone, mobilePhone, note);
+  *iter    = dataBean;
+
+  /* Redraw and Reselect. */
   SystemInterface::getInstance().getDataBeans().sort();
   this->on_pushButton_ListContact_clicked();
   showContactInfo(newName);
@@ -196,8 +189,7 @@ void MainWindow::showContactInfo(string contactName) {
   DataBean dataBean(contactName);
   auto     iter = SystemInterface::getInstance().searchDataBean(dataBean);
 
-  qDebug("ContactList item has been changed to: \n%s",
-         iter->getFormatedInfo().c_str());
+  /* Redraw. */
 
   // Redraw Contact Info.
   ui->label_contact_info->setText(QString(iter->getFormatedInfo().c_str()));
@@ -213,7 +205,7 @@ void MainWindow::showContactInfo(string contactName) {
 
 void MainWindow::on_pushButton_ImportContact_clicked()
 {
-  // Enter DataBeansFile Name.
+  // Enter Import DataBeansFile Name.
   bool isOK;
   QString text = QInputDialog::getText(this,
                                        NULL,
@@ -232,39 +224,40 @@ void MainWindow::on_pushButton_ImportContact_clicked()
 
   QMessageBox::information(this, NULL, "Import Successfully.");
 
-  // Redraw and Reselect.
+  // Redraw.
   this->on_pushButton_ListContact_clicked();
 }
 
 void MainWindow::on_pushButton_SearchContact_clicked()
 {
-  // Chosse Primary Key for Search.
-  QStringList items;
+  // Chosse PrimaryKeyType for Search.
+  QStringList searchPrimaryKeyTypes;
 
-  items << QString("By Name") << QString("By Unit") <<
-    QString("By MobilePhone") << QString("By Note");
-  bool OK;
-  QString item = QInputDialog::getItem(this,
-                                       NULL,
-                                       "Choose Primary Key for Search.",
-                                       items,
-                                       0,
-                                       false,
-                                       &OK);
+  searchPrimaryKeyTypes << "By Name" << "By Unit" << "By Telephone" <<
+    "By MobilePhone" <<
+    "By Note";
+  bool isOK;
+  QString searchPrimaryKeyType = QInputDialog::getItem(this,
+                                                       NULL,
+                                                       "Choose Primary Key for Search.",
+                                                       searchPrimaryKeyTypes,
+                                                       0,
+                                                       false,
+                                                       &isOK);
 
-  if (!OK || item.isEmpty()) {
+  if (!isOK || searchPrimaryKeyType.isEmpty()) {
     return;
   }
 
-  // Input the value of Primary Key.
+  // Input the value of PrimaryKey.
   QString searchValue = QInputDialog::getText(this,
                                               NULL,
                                               "Please input primary key.",
                                               QLineEdit::Normal,
                                               NULL,
-                                              &OK);
+                                              &isOK);
 
-  if (!OK || searchValue.isEmpty()) {
+  if (!isOK || searchValue.isEmpty()) {
     return;
   }
 
@@ -272,7 +265,7 @@ void MainWindow::on_pushButton_SearchContact_clicked()
   list<list<DataBean>::iterator> searchedDataBeans;
 
   // Filter: By Name.
-  if (!item.toStdString().compare("By Name")) {
+  if (!searchPrimaryKeyType.toStdString().compare("By Name")) {
     searchedDataBeans =
       SystemInterface::getInstance().searchDataBeans([searchValue](const DataBean&
                                                                    dataBean){
@@ -283,7 +276,7 @@ void MainWindow::on_pushButton_SearchContact_clicked()
   }
 
   // Filter: By Unit.
-  if (!item.toStdString().compare("By Unit")) {
+  if (!searchPrimaryKeyType.toStdString().compare("By Unit")) {
     searchedDataBeans =
       SystemInterface::getInstance().searchDataBeans([searchValue](const DataBean&
                                                                    dataBean){
@@ -293,8 +286,20 @@ void MainWindow::on_pushButton_SearchContact_clicked()
     });
   }
 
+  // Filter: By Telephone.
+  if (!searchPrimaryKeyType.toStdString().compare("By Telephone")) {
+    searchedDataBeans =
+      SystemInterface::getInstance().searchDataBeans([searchValue](const DataBean&
+                                                                   dataBean){
+      return LevenshteinAlgorithm::compare(
+        searchValue.toStdString(),
+        dataBean.telephone) >= TEXT_SIMILARITY_THRESHOLD;
+    });
+  }
+
+
   // Filter: By MobilePhone.
-  if (!item.toStdString().compare("By MobilePhone")) {
+  if (!searchPrimaryKeyType.toStdString().compare("By MobilePhone")) {
     searchedDataBeans =
       SystemInterface::getInstance().searchDataBeans([searchValue](const DataBean&
                                                                    dataBean){
@@ -305,7 +310,7 @@ void MainWindow::on_pushButton_SearchContact_clicked()
   }
 
   // Filter: By Note.
-  if (!item.toStdString().compare("By Note")) {
+  if (!searchPrimaryKeyType.toStdString().compare("By Note")) {
     searchedDataBeans =
       SystemInterface::getInstance().searchDataBeans([searchValue](const DataBean&
                                                                    dataBean){
@@ -314,7 +319,7 @@ void MainWindow::on_pushButton_SearchContact_clicked()
         dataBean.note) >= TEXT_SIMILARITY_THRESHOLD;
     });
   }
-  qDebug("the size of SearchedDataBeans: %d", searchedDataBeans.size());
+  qDebug("the size of SearchedDataBeans: %zu", searchedDataBeans.size());
 
   /* Redraw List. */
   ui->listWidget_databeans->clear();

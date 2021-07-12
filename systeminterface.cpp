@@ -3,16 +3,11 @@
 #include <list>
 #include <iterator>
 #include <algorithm>
-#include <numeric>
-#include <QDebug>
-
 using namespace std;
-
 
 // Singleton
 SystemInterface& SystemInterface::getInstance() {
   static SystemInterface instance;
-
   return instance;
 }
 
@@ -56,7 +51,6 @@ list<DataBean>::iterator SystemInterface::searchDataBean(DataBean& dataBean) {
   list<DataBean>::iterator iter = find(dataBeans.begin(),
                                        dataBeans.end(),
                                        dataBean);
-
   return iter;
 }
 
@@ -74,13 +68,7 @@ bool SystemInterface::saveDataBeansToDisk() {
   }
 
   for (DataBean dataBean : dataBeans) {
-    fprintf(file,
-            "%s %s %s %s %s\n",
-            dataBean.name.c_str(),
-            dataBean.unit.c_str(),
-            dataBean.telephone.c_str(),
-            dataBean.mobilePhone.c_str(),
-            dataBean.note.c_str());
+    dataBean.outputToFile(file);
   }
 
   fclose(file);
@@ -92,7 +80,6 @@ bool SystemInterface::loadDataBeansFromDisk(bool   clearDetaBeansInMemory,
   // Clear DataBeans in Memory.
   if (clearDetaBeansInMemory) this->dataBeans.clear();
 
-
   // Read DataBeans from Disk.
   FILE *file = fopen(fileName.c_str(), "r");
 
@@ -101,21 +88,8 @@ bool SystemInterface::loadDataBeansFromDisk(bool   clearDetaBeansInMemory,
     return false;
   }
 
-  // Dim DataBean Attributes.
-  char name_buf[BUFFER_SIZE];
-  char unit_buf[BUFFER_SIZE];
-  char telephone_buf[BUFFER_SIZE];
-  char mobilePhone_buf[BUFFER_SIZE];
-  char note_buf[BUFFER_SIZE];
-
-  while (fscanf(file, "%s %s %s %s %s\n", &name_buf, &unit_buf, &telephone_buf,
-                &mobilePhone_buf, &note_buf) != EOF) {
-    this->dataBeans.push_back(DataBean(string(name_buf), string(unit_buf),
-                                       string(telephone_buf),
-                                       string(mobilePhone_buf),
-                                       string(note_buf)));
-  }
-
+  /* Read DataBean Attributes. */
+  DataBean::inputFromFile(file);
   fclose(file);
   return true;
 }

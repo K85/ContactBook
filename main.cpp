@@ -9,7 +9,7 @@
 
 int main(int argc, char *argv[])
 {
-  // Call SystemInstance.
+  // Initialize SystemInstance.
   SystemInterface::getInstance().loadDataBeansFromDisk();
   SystemInterface::getInstance().getDataBeans().sort();
 

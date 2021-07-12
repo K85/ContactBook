@@ -1,6 +1,8 @@
 #include "DataBean.h"
+#include "SystemInterface.h"
 #include <string>
 #include <string.h>
+#include <qDebug>
 #define BUFFER_SIZE 1024
 #pragma warning(disable:4996)
 
@@ -42,5 +44,37 @@ string DataBean::getFormatedInfo() {
 }
 
 void DataBean::printDataBean() {
-  printf("%s\n", this->getFormatedInfo().c_str());
+  qDebug("%s\n", this->getFormatedInfo().c_str());
+}
+
+void DataBean::outputToFile(FILE *file) {
+  fprintf(file,
+          "%s %s %s %s %s\n",
+          this->name.c_str(),
+          this->unit.c_str(),
+          this->telephone.c_str(),
+          this->mobilePhone.c_str(),
+          this->note.c_str());
+}
+
+void DataBean::inputFromFile(FILE *file) {
+  char name_buf[BUFFER_SIZE];
+  char unit_buf[BUFFER_SIZE];
+  char telephone_buf[BUFFER_SIZE];
+  char mobilePhone_buf[BUFFER_SIZE];
+  char note_buf[BUFFER_SIZE];
+
+  while (fscanf(file, "%s %s %s %s %s\n", &name_buf, &unit_buf, &telephone_buf,
+                &mobilePhone_buf, &note_buf) != EOF) {
+    SystemInterface::getInstance().getDataBeans().push_back(DataBean(string(
+                                                                       name_buf),
+                                                                     string(
+                                                                       unit_buf),
+                                                                     string(
+                                                                       telephone_buf),
+                                                                     string(
+                                                                       mobilePhone_buf),
+                                                                     string(
+                                                                       note_buf)));
+  }
 }
