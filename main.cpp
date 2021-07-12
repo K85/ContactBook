@@ -1,5 +1,5 @@
 #include "SystemInterface.h"
-#include "LevenshteinAlgotithm.h"
+#include "LevenshteinAlgorithm.h"
 #include "mainwindow.h"
 #include <stdio.h>
 #include <QApplication>

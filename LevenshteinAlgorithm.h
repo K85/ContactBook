@@ -8,7 +8,7 @@ using namespace std;
 /** Levenshtein±‡º≠æ‡¿ÎÀ„∑®
     @Article: https://blog.csdn.net/ddupd/article/details/19759209
  **/
-class LevenshteinAlgotithm {
+class LevenshteinAlgorithm {
 private:
 
   static bool compare_char_(char c1,

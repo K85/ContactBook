@@ -19,14 +19,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     DataBean.cpp \
-    LevenshteinAlgotithm.cpp \
+    LevenshteinAlgorithm.cpp \
     SystemInterface.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     DataBean.h \
-    LevenshteinAlgotithm.h \
+    LevenshteinAlgorithm.h \
     SystemInterface.h \
     mainwindow.h
 

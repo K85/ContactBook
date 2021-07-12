@@ -1,23 +1,23 @@
-#include "LevenshteinAlgotithm.h"
+#include "LevenshteinAlgorithm.h"
 #include <algorithm>
 
-bool LevenshteinAlgotithm::compare_char_(char c1, char c2) {
+bool LevenshteinAlgorithm::compare_char_(char c1, char c2) {
   return c1 == c2;
 }
 
-size_t LevenshteinAlgotithm::ins_(char c) {
+size_t LevenshteinAlgorithm::ins_(char c) {
   return 1;
 }
 
-size_t LevenshteinAlgotithm::del_(char c) {
+size_t LevenshteinAlgorithm::del_(char c) {
   return 1;
 }
 
-size_t LevenshteinAlgotithm::sub_(char c1, char c2) {
+size_t LevenshteinAlgorithm::sub_(char c1, char c2) {
   return compare_char_(c1, c2) ? 0 : 2;
 }
 
-size_t LevenshteinAlgotithm::compare_(const std::string& ref_s,
+size_t LevenshteinAlgorithm::compare_(const std::string& ref_s,
                                       const std::string& ref_l) {
   size_t len_s = ref_s.length();
   size_t len_l = ref_l.length();
@@ -57,7 +57,7 @@ size_t LevenshteinAlgotithm::compare_(const std::string& ref_s,
   return distance[len_s][len_l];
 }
 
-float LevenshteinAlgotithm::compare(const std::string& ref1,
+float LevenshteinAlgorithm::compare(const std::string& ref1,
                                     const std::string& ref2)
 {
   if (ref1.empty() && ref2.empty())

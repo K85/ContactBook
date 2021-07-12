@@ -1,5 +1,5 @@
 #include "mainwindow.h"
-#include "LevenshteinAlgotithm.h"
+#include "LevenshteinAlgorithm.h"
 #include "ui_mainwindow.h"
 #include "DataBean.h"
 #include "SystemInterface.cpp"
@@ -179,13 +179,17 @@ void MainWindow::on_pushButton_ModifyContact_clicked()
   string mobilePhone =
     ui->lineEdit_operateContact_MobilePhone->text().toStdString();
   string note = ui->lineEdit_operateContact_Note->text().toStdString();
-
   dataBean = DataBean(newName, unit, telephone, mobilePhone, note);
+  *iter = dataBean;
 
-  SystemInterface::getInstance().modifyDataBean(dataBean);
-
-  // Redraw.
+  // Redraw and Reselect.
+  SystemInterface::getInstance().getDataBeans().sort();
+  this->on_pushButton_ListContact_clicked();
   showContactInfo(newName);
+  ui->listWidget_databeans->setCurrentItem(ui->listWidget_databeans->findItems(
+                                             QString(newName.c_str()),
+                                             Qt::MatchExactly).first());
+  ui->pushButton_AddContact->setDisabled(true);
 }
 
 void MainWindow::showContactInfo(string contactName) {
@@ -272,7 +276,7 @@ void MainWindow::on_pushButton_SearchContact_clicked()
     searchedDataBeans =
       SystemInterface::getInstance().searchDataBeans([searchValue](const DataBean&
                                                                    dataBean){
-      return LevenshteinAlgotithm::compare(
+      return LevenshteinAlgorithm::compare(
         searchValue.toStdString(),
         dataBean.name) >= TEXT_SIMILARITY_THRESHOLD;
     });
@@ -283,7 +287,7 @@ void MainWindow::on_pushButton_SearchContact_clicked()
     searchedDataBeans =
       SystemInterface::getInstance().searchDataBeans([searchValue](const DataBean&
                                                                    dataBean){
-      return LevenshteinAlgotithm::compare(
+      return LevenshteinAlgorithm::compare(
         searchValue.toStdString(),
         dataBean.unit) >= TEXT_SIMILARITY_THRESHOLD;
     });
@@ -294,7 +298,7 @@ void MainWindow::on_pushButton_SearchContact_clicked()
     searchedDataBeans =
       SystemInterface::getInstance().searchDataBeans([searchValue](const DataBean&
                                                                    dataBean){
-      return LevenshteinAlgotithm::compare(
+      return LevenshteinAlgorithm::compare(
         searchValue.toStdString(),
         dataBean.mobilePhone) >= TEXT_SIMILARITY_THRESHOLD;
     });
@@ -305,7 +309,7 @@ void MainWindow::on_pushButton_SearchContact_clicked()
     searchedDataBeans =
       SystemInterface::getInstance().searchDataBeans([searchValue](const DataBean&
                                                                    dataBean){
-      return LevenshteinAlgotithm::compare(
+      return LevenshteinAlgorithm::compare(
         searchValue.toStdString(),
         dataBean.note) >= TEXT_SIMILARITY_THRESHOLD;
     });
