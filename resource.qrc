@@ -44,5 +44,6 @@
         <file>qss/silvery.qss</file>
         <file>qss/test.css</file>
         <file>icon.ico</file>
+        <file>.gitattributes</file>
     </qresource>
 </RCC>
