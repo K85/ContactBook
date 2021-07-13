@@ -122,6 +122,7 @@ list<list<DataBean>::iterator> SystemInterface::searchDataBeans(
 }
 
 string SystemInterface::filter(string raw) {
+  raw = SystemInterface::trim(raw);
   for (char &ch : raw) {
     if ((ch == ' ') || (ch == '\n') || (ch == '\t')) ch = '_';
   }
