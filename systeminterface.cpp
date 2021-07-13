@@ -122,7 +122,7 @@ list<list<DataBean>::iterator> SystemInterface::searchDataBeans(
 }
 
 string SystemInterface::filter(string raw) {
-  for (char &ch : trim(raw)) {
+  for (char &ch : raw) {
     if ((ch == ' ') || (ch == '\n') || (ch == '\t')) ch = '_';
   }
   return raw;
@@ -136,8 +136,4 @@ string &SystemInterface::trim(string &str) {
   if (str.empty()) {
     return str;
   }
-
-  str.erase(0, str.find_first_not_of(" "));
-  str.erase(str.find_last_not_of(" ") + 1);
-  return str;
 }
