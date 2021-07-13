@@ -178,6 +178,7 @@ void MainWindow::on_pushButton_ModifyContact_clicked() {
 
   dataBean = DataBean(newName, unit, telephone, mobilePhone, note);
   *iter = dataBean;
+  SystemInterface::getInstance().saveDataBeansToDisk();
 
   /* Redraw and Reselect. */
   SystemInterface::getInstance().getDataBeans().sort();
