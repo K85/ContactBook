@@ -1,5 +1,6 @@
 #pragma once
 #include <list>
+#include <regex>
 #include <string>
 
 #include "DataBean.h"
@@ -35,4 +36,8 @@ class SystemInterface {
   list<list<DataBean>::iterator> searchDataBeans(_Predicate predicate);
 
   static string filter(string raw);
+
+  static string& trim(string& str);
+
+  static bool matchRegex(string text, string reg);
 };

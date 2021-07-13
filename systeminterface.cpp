@@ -122,8 +122,22 @@ list<list<DataBean>::iterator> SystemInterface::searchDataBeans(
 }
 
 string SystemInterface::filter(string raw) {
-  for (char &ch : raw) {
+  for (char &ch : trim(raw)) {
     if ((ch == ' ') || (ch == '\n') || (ch == '\t')) ch = '_';
   }
   return raw;
+}
+
+bool SystemInterface::matchRegex(string text, string reg) {
+  return std::regex_match(text, regex(reg));
+}
+
+string &SystemInterface::trim(string &str) {
+  if (str.empty()) {
+    return str;
+  }
+
+  str.erase(0, str.find_first_not_of(" "));
+  str.erase(str.find_last_not_of(" ") + 1);
+  return str;
 }

@@ -33,11 +33,25 @@ class MainWindow : public QMainWindow {
 
   void showContactInfo(string contactName);
 
-  void on_pushButton_ImportContact_clicked();
-
   void on_pushButton_SearchContact_clicked();
 
   void on_lineEdit_operateContact_Name_textChanged(const QString& arg1);
+
+  void on_lineEdit_operateContact_Unit_textChanged(const QString& arg1);
+
+  void on_lineEdit_operateContact_Telephone_textChanged(const QString& arg1);
+
+  void on_lineEdit_operateContact_MobilePhone_textChanged(const QString& arg1);
+
+  void on_lineEdit_operateContact_Note_textChanged(const QString& arg1);
+
+  bool validateDataBean(bool ignoreExistName, const string& name,
+                        const string& unit, const string& telephone,
+                        const string& mobilePhone, const string& note);
+
+  void listContacts();
+
+  void on_pushButton_ImportContact_clicked();
 
  private:
   Ui::MainWindow* ui;

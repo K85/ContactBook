@@ -20,7 +20,7 @@
       <x>20</x>
       <y>40</y>
       <width>171</width>
-      <height>421</height>
+      <height>391</height>
      </rect>
     </property>
    </widget>
@@ -139,7 +139,7 @@
       <rect>
        <x>20</x>
        <y>170</y>
-       <width>100</width>
+       <width>111</width>
        <height>32</height>
       </rect>
      </property>
@@ -152,7 +152,7 @@
       <rect>
        <x>20</x>
        <y>220</y>
-       <width>100</width>
+       <width>111</width>
        <height>32</height>
       </rect>
      </property>
@@ -163,9 +163,9 @@
     <widget class="QPushButton" name="pushButton_DeleteContact">
      <property name="geometry">
       <rect>
-       <x>130</x>
+       <x>140</x>
        <y>170</y>
-       <width>100</width>
+       <width>111</width>
        <height>32</height>
       </rect>
      </property>
@@ -173,25 +173,12 @@
       <string>Delete</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_ListContact">
-     <property name="geometry">
-      <rect>
-       <x>130</x>
-       <y>220</y>
-       <width>100</width>
-       <height>32</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>List</string>
-     </property>
-    </widget>
     <widget class="QPushButton" name="pushButton_SearchContact">
      <property name="geometry">
       <rect>
-       <x>240</x>
-       <y>170</y>
-       <width>100</width>
+       <x>140</x>
+       <y>220</y>
+       <width>111</width>
        <height>32</height>
       </rect>
      </property>
@@ -202,10 +189,10 @@
     <widget class="QPushButton" name="pushButton_ImportContact">
      <property name="geometry">
       <rect>
-       <x>240</x>
-       <y>220</y>
-       <width>100</width>
-       <height>32</height>
+       <x>260</x>
+       <y>170</y>
+       <width>81</width>
+       <height>81</height>
       </rect>
      </property>
      <property name="text">
@@ -280,6 +267,19 @@
       <string/>
      </property>
     </widget>
+   </widget>
+   <widget class="QPushButton" name="pushButton_ListContact">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>440</y>
+      <width>171</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Back</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

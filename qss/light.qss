@@ -3,25 +3,25 @@
 *
 * Copyright : http://blog.csdn.net/liang19890820
 *
-* Author : 一去丶二三里
+* Author : ??????
 *
 * Date : 2016/07/22
 *
-* Description : 白色靓丽
+* Description : ????
 *
 */
 
-/**********子界面背景**********/
+/**********?????**********/
 QWidget#customWidget {
 		background: rgb(173, 202, 232);
 }
 
-/**********子界面中央背景**********/
+/**********???????**********/
 QWidget#centerWidget {
 		background: rgb(232, 241, 252);
 }
 
-/**********主界面样式**********/
+/**********?????**********/
 QWidget#mainWindow {
 		border: 1px solid rgb(111, 156, 207);
 		background: rgb(232, 241, 252);
@@ -56,14 +56,14 @@ QProgressIndicator {
         qproperty-color: rgb(2, 65, 132);
 }
 
-/**********提示**********/
+/**********??**********/
 QToolTip{
 		border: 1px solid rgb(111, 156, 207);
 		background: white;
 		color: rgb(51, 51, 51);
 }
 
-/**********菜单栏**********/
+/**********???**********/
 QMenuBar {
         background: rgb(187, 212, 238);
         border: 1px solid rgb(111, 156, 207);
@@ -87,7 +87,7 @@ QMenuBar::item:enabled:selected {
         background: rgb(198, 224, 252);
 }
 
-/**********菜单**********/
+/**********??**********/
 QMenu {
         border: 1px solid rgb(111, 156, 207);
         background: rgb(232, 241, 250);
@@ -119,7 +119,7 @@ QMenu::icon {
         padding-right: 2px;
 }
 
-/**********状态栏**********/
+/**********???**********/
 QStatusBar {
         background: rgb(187, 212, 238);
         border: 1px solid rgb(111, 156, 207);
@@ -132,7 +132,7 @@ QStatusBar::item {
     border-right: 1px solid rgb(111, 156, 207);
 }
 
-/**********分组框**********/
+/**********???**********/
 QGroupBox {
 		font-size: 15px;
 		border: 1px solid rgb(111, 156, 207);
@@ -145,7 +145,7 @@ QGroupBox::title {
 		left: 10px;
 }
 
-/**********页签项**********/
+/**********???**********/
 QTabWidget::pane {
 		border: none;
 		border-top: 3px solid rgb(0, 78, 161);
@@ -194,7 +194,7 @@ QTabBar#tabBar::tab:selected {
         background: rgb(232, 241, 252);
 }
 
-/**********表头**********/
+/**********??**********/
 QHeaderView{
         border: none;
         border-bottom: 3px solid rgb(0, 78, 161);
@@ -236,7 +236,7 @@ QHeaderView::down-arrow:hover, QHeaderView::down-arrow:pressed {
         image: url(:/White/bottomArrowHover);
 }
 
-/**********表格**********/
+/**********??**********/
 QTableView {
         border: 1px solid rgb(111, 156, 207);
         background: rgb(224, 238, 255);
@@ -288,7 +288,7 @@ QTableView::indicator:enabled:indeterminate:pressed {
         image: url(:/White/checkBoxIndeterminatePressed);
 }
 
-/**********滚动条-水平**********/
+/**********???-??**********/
 QScrollBar:horizontal {
         height: 20px;
         background: transparent;
@@ -327,7 +327,7 @@ QScrollBar::add-page:horizontal,QScrollBar::sub-page:horizontal {
         background: transparent;
 }
 
-/**********滚动条-垂直**********/
+/**********???-??**********/
 QScrollBar:vertical {
         width: 20px;
         background: transparent;
@@ -370,7 +370,7 @@ QScrollBar#verticalScrollBar:vertical {
         margin-top: 30px;
 }
 
-/**********下拉列表**********/
+/**********????**********/
 QComboBox {
         height: 25px;
         border-radius: 4px;
@@ -414,7 +414,7 @@ QComboBox QAbstractItemView::item:selected {
         color: rgb(2, 65, 132);
 }
 
-/**********进度条**********/
+/**********???**********/
 QProgressBar{
         border: none;
         text-align: center;
@@ -440,7 +440,7 @@ QProgressBar#progressBar::chunk {
 		background-repeat: repeat-x;
 }
 
-/**********复选框**********/
+/**********???**********/
 QCheckBox{
         spacing: 5px;
 }
@@ -488,7 +488,7 @@ QCheckBox::indicator:indeterminate:pressed {
         image: url(:/White/checkBoxIndeterminatePressed);
 }
 
-/**********单选框**********/
+/**********???**********/
 QRadioButton{
         spacing: 5px;
 }
@@ -527,13 +527,14 @@ QRadioButton::indicator:checked:pressed {
         image: url(:/White/radioButtonCheckedPressed);
 }
 
-/**********输入框**********/
+/**********???**********/
 QLineEdit {
         border-radius: 4px;
         height: 25px;
         border: 1px solid rgb(111, 156, 207);
         background: white;
 }
+
 QLineEdit:enabled {
         color: rgb(84, 84, 84);
 }
@@ -544,25 +545,25 @@ QLineEdit:!enabled {
         color: rgb(80, 80, 80);
 }
 
-/**********文本编辑框**********/
+/**********?????**********/
 QTextEdit {
         border: 1px solid rgb(111, 156, 207);
         color: rgb(70, 71, 73);
         background: rgb(187, 212, 238);
 }
 
-/**********滚动区域**********/
+/**********????**********/
 QScrollArea {
         border: 1px solid rgb(111, 156, 207);
         background: rgb(187, 212, 238);
 }
 
-/**********滚动区域**********/
+/**********????**********/
 QWidget#transparentWidget {
         background: transparent;
 }
 
-/**********微调器**********/
+/**********???**********/
 QSpinBox {
         border-radius: 4px;
         height: 24px;
@@ -607,7 +608,7 @@ QSpinBox::down-button:hover {
         background: rgb(255, 255, 255, 30);
 }
 
-/**********标签**********/
+/**********??**********/
 QLabel#grayLabel {
         color: rgb(70, 71, 73);
 }
@@ -688,7 +689,7 @@ QLabel#groupLabel {
 		border-left-color: transparent;
 }
 
-/**********按钮**********/
+/**********??**********/
 QToolButton#nsccButton {
 		border: none;
 		color: rgb(2, 65, 132);
@@ -715,7 +716,7 @@ QToolButton#transferButton:hover {
 		background: rgb(187, 212, 238);
 }
 
-/**********按钮**********/
+/**********??**********/
 QPushButton{
 		border-radius: 4px;
 		border: none;
@@ -787,7 +788,7 @@ QPushButton#transparentButton {
         background: transparent;
 }
 
-/*****************标题栏按钮*******************/
+/*****************?????*******************/
 QPushButton#minimizeButton {
 		border-radius: none;
 		border-bottom-left-radius: 4px;
