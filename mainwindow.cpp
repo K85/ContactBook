@@ -457,3 +457,8 @@ void MainWindow::on_pushButton_ImportContact_clicked() {
   // Redraw.
   this->on_pushButton_ListContact_clicked();
 }
+
+void MainWindow::on_MainWindow_destroyed() {
+  // Release Memory.
+  SystemInterface::getInstance().getDataBeans().clear();
+}

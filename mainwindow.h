@@ -53,6 +53,8 @@ class MainWindow : public QMainWindow {
 
   void on_pushButton_ImportContact_clicked();
 
+  void on_MainWindow_destroyed();
+
  private:
   Ui::MainWindow* ui;
 };
