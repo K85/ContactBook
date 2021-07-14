@@ -59,7 +59,7 @@ bool SystemInterface::existDataBean(DataBean &dataBean) {
 }
 
 bool SystemInterface::saveDataBeansToDisk() {
-  FILE *file = fopen(SystemInterface::DATABEANS_FILE_NAME.c_str(), "w+");
+  FILE *file = fopen(SystemInterface::DATABEANS_FILE_NAME.c_str(), "w");
 
   if (file == NULL) {
     printf("Cannot Open This File\n");
