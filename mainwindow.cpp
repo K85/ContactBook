@@ -151,8 +151,7 @@ void MainWindow::on_pushButton_ModifyContact_clicked() {
   string oldName =
       ui->listWidget_databeans->currentItem()->text().toStdString();
   DataBean dataBean(oldName);
-  list<DataBean>::iterator iter =
-      SystemInterface::getInstance().searchDataBean(dataBean);
+  auto iter = SystemInterface::getInstance().searchDataBean(dataBean);
 
   /* Construct DataBean. */
   string newName = SystemInterface::filter(
@@ -321,7 +320,7 @@ void MainWindow::on_pushButton_SearchContact_clicked() {
   // Redraw List.
   ui->listWidget_databeans->clear();
 
-  for (list<DataBean>::iterator dataBeanPtr : searchedDataBeans) {
+  for (auto dataBeanPtr : searchedDataBeans) {
     ui->listWidget_databeans->addItem(QString(dataBeanPtr->name.c_str()));
   }
 
