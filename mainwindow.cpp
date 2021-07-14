@@ -448,11 +448,18 @@ void MainWindow::on_pushButton_ImportContact_clicked() {
   }
 
   // Load Databeans from Disk.
-  SystemInterface::getInstance().loadDataBeansFromDisk(false,
-                                                       text.toStdString());
-  SystemInterface::getInstance().saveDataBeansToDisk();
+  bool flag = true;
+  if (!SystemInterface::getInstance().loadDataBeansFromDisk(false,
+                                                            text.toStdString()))
+    flag = false;
+  if (!SystemInterface::getInstance().saveDataBeansToDisk()) flag = false;
 
-  QMessageBox::information(this, NULL, "Import Successfully.");
+  if (flag) {
+    QMessageBox::information(this, NULL, "Import Successfully.");
+  } else {
+    QMessageBox::critical(this, NULL,
+                          "Import Failed. Is the file name correct?");
+  }
 
   // Redraw.
   this->on_pushButton_ListContact_clicked();
