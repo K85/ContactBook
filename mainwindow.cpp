@@ -11,7 +11,7 @@
 #include "SystemInterface.cpp"
 #include "ui_mainwindow.h"
 
-#define TEXT_SIMILARITY_THRESHOLD 0.3
+#define TEXT_SIMILARITY_THRESHOLD 0.2
 
 static const string STRING_EMPTY = "Empty";
 using namespace std;
